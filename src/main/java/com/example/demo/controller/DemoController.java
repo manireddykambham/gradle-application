@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,13 @@ public class DemoController {
     public CustomResponse handlePostRequest(@RequestBody CustomRequest customRequest) {
         // Create a simple response
         return new CustomResponse("Received your data: " + customRequest.getData());
+    }
+
+    // Create an endpoint that accepts POST requests
+    @GetMapping("/api/data")
+    public CustomResponse handleGetRequest() {
+        // Create a simple response
+        return new CustomResponse("This is get request");
     }
 
     // Static inner class to hold incoming request data
