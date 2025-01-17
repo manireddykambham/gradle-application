@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
-
+@SpringBootTest
+@AutoConfigureMockMvc
 public class DemoControllerTest {
     private MockMvc mockMvc;
     @BeforeEach
@@ -32,5 +35,10 @@ public class DemoControllerTest {
                 .andExpect(status().isOk())  // Expect HTTP 200 OK
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.message").value("Received your data: test data"));  // Verify the response message
+    }
+    @Test
+    public void testHandleGetRequest() throws Exception {
+        DemoController.CustomRequest customRequest = new DemoController.CustomRequest();
+
     }
 }
